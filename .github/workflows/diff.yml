@@ -1,0 +1,19 @@
+name: Check git diff
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    paths:
+      - '**.tf'
+
+jobs:
+  check:
+    name: diff
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Check diff
+        run: make check-docs
